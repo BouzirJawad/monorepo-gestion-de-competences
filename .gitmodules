@@ -1,0 +1,6 @@
+[submodule "services/skills-micro"]
+	path = services/skills-micro
+	url = https://github.com/BouzirJawad/gestion-de-competences.git
+[submodule "services/brief-micro"]
+	path = services/brief-micro
+	url = https://github.com/BouzirJawad/gestion-de-competences-part-2.git
