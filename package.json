@@ -4,10 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix services/skills-micro/backend\" \"npm run dev --prefix services/brief-micro/backend\" \"nodemon server.js\"",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BouzirJawad/monorepo-gestion-de-competences.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BouzirJawad/monorepo-gestion-de-competences/issues"
+  },
+  "homepage": "https://github.com/BouzirJawad/monorepo-gestion-de-competences#readme"
 }
