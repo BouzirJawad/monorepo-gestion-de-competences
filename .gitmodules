@@ -4,3 +4,6 @@
 [submodule "services/brief-micro"]
 	path = services/brief-micro
 	url = https://github.com/BouzirJawad/gestion-de-competences-part-2.git
+[submodule "services/student-micro"]
+	path = services/student-micro
+	url = https://github.com/BouzirJawad/students-micro.git
