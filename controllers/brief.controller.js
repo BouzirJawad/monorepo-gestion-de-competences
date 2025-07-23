@@ -15,7 +15,7 @@ const createBrief = async (req, res) => {
     }
 
     const resp = await axios.post(
-      `${process.env.BRIEF_URL}/api/briefs/create`,
+      `${process.env.BRIEFS_URL}/api/briefs/create`,
       {
         title,
         description,
@@ -38,7 +38,7 @@ const getBrief = async (req, res) => {
     const id = req.params.id
   try {
     const briefRes = await axios.get(
-      `${process.env.BRIEF_URL}/api/briefs/${id}`
+      `${process.env.BRIEFS_URL}/api/briefs/${id}`
     );
     const brief = briefRes.data;
     

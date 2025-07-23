@@ -7,3 +7,6 @@
 [submodule "services/student-micro"]
 	path = services/student-micro
 	url = https://github.com/BouzirJawad/students-micro.git
+[submodule "services/auth-micro"]
+	path = services/auth-micro
+	url = https://github.com/BouzirJawad/auth-micro-.git
