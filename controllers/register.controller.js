@@ -32,16 +32,8 @@ const register = async (req, res) => {
         return res.status(201).json({ message: "User registered successfully", user})
     } catch (error) {
         console.error("Auth registration error:", error.response?.data || error.message)
-        if (error.response?.status === 409) {
-            return res.status(409).json({
-                message: "User already exists"
-            })
-        }
 
-        return res.status(500).json({
-            message: "Failed to register user",
-            error: error.response?.data || error.message
-        })
+        return res.status(500).json(error.response?.data || error.message)
     }
 }
 
