@@ -4,7 +4,7 @@ const createBrief = async (req, res) => {
   const { title, description, context, skillCodes } = req.body;
 
   try {
-    const skillCheck = await axios.get(`${process.env.SKILLS_URL}/api/skills`);
+    const skillCheck = await axios.get(`${process.env.SKILLS_URL}/api/skills/list`);
     const availableCodes = skillCheck.data.skills.map((s) => s.code);
 
     const validSkills = skillCodes.filter((code) =>
@@ -35,14 +35,14 @@ const createBrief = async (req, res) => {
 };
 
 const getBrief = async (req, res) => {
-    const id = req.params.id
+    const { briefId } = req.params;
   try {
     const briefRes = await axios.get(
-      `${process.env.BRIEFS_URL}/api/briefs/${id}`
+      `${process.env.BRIEFS_URL}/api/briefs/brief/${briefId}`
     );
     const brief = briefRes.data;
     
-    const skillsRes = await axios.get(`${process.env.SKILLS_URL}/api/skills`);
+    const skillsRes = await axios.get(`${process.env.SKILLS_URL}/api/skills/list`);
     const allskills = skillsRes.data.skills;
     const fullSkills = brief.skillCodes.map(code => allskills.find(skill => skill.code === code))
 

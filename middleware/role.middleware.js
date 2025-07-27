@@ -1,15 +1,35 @@
-const allowRoles = (...allowedRoles) => {
-    return (req, res, next) => {
-        if(!req.user){
-            return res.status(403).json({ message: "No user data found" })
-        }
+const roleAccessMap = require("../config/roleAccess.config")
+const { match } = require("path-to-regexp")
 
-        if (!allowedRoles.includes(req.user.role)) {
-            return res.status(403).json({ message: "Access denied"})
-        }
+const dynamicRoleMiddleware = (req, res, next) => {
+  const userRole = req.user?.role;
 
-        next()
+  if (!userRole) {
+    return res.status(401).json({ message: "Unauthorized"})
+  }
+
+  const currentPath = req.baseUrl + req.path;
+  let allowRoles = null;
+
+  for(const routePattern in roleAccessMap ){
+    const matcher = match(routePattern, { decode: decodeURIComponent })
+    const matched = matcher(currentPath);
+
+    if (matched) {
+        allowRoles = roleAccessMap[routePattern]
+        break;
     }
-}
+  }
 
-module.exports = allowRoles
+  if (!allowRoles) {
+    return res.status(403).json({ message: "Access denied - No rule for this route"})
+  }
+
+  if (!allowRoles.includes(userRole)) {
+    return res.status(403).json({ message: "Access denied"})
+  }
+
+  next();
+};
+
+module.exports = dynamicRoleMiddleware
